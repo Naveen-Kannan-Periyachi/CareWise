@@ -1,0 +1,19 @@
+# CareWise Bio - Requirements
+
+# Core dependencies
+requests>=2.31.0
+
+# Backend API server
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+
+# Data processing (if needed later)
+# pandas>=2.0.0
+# numpy>=1.24.0
+
+# For local LLM (Ollama - external)
+# No Python package needed, Ollama runs as separate service
+
+# Development/Testing
+# pytest>=7.4.0

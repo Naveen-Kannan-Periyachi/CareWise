@@ -1,0 +1,74 @@
+================================================================================
+🏆 TOP 5 RANKED EVIDENCE - FULL DETAILS
+================================================================================
+
+Query: What are the side effects of Pembrolizumab?
+Generated: 2026-01-26 17:07:03
+================================================================================
+
+
+================================================================================
+[1] EVIDENCE ITEM - Score: 0.950
+================================================================================
+
+Source: FDA
+
+Title:
+pembrolizumab - Drug Safety Information
+
+Summary:
+ADVERSE REACTIONS:
+6 ADVERSE REACTIONS The following clinically significant adverse reactions are described elsewhere in the labeling.
+
+Severe and fatal immune-mediated adverse reactions [see Warnings and Precautions (5.1) ] .
+
+Hypersensitivity and Administration-Related Reactions [see Warnings and Precautions (5.2) ].
+
+The most common adverse reactions (≥20%) in patients treated with KEYTRUDA QLEX in combination with chemotherapy were nausea, fatigue, and musculoskeletal pain.
+
+( 6.1 ) The safety of KEYTRUDA QLEX for
+
+
+Metadata:
+  • drug_name: pembrolizumab
+  • purpose: N/A
+  • type: drug_label
+
+Relevance Metrics:
+  • Relevance: 1.000
+  • Recency: 0.500
+  • Completeness: 1.000
+  • Source Priority: 1.000
+
+
+================================================================================
+[2] EVIDENCE ITEM - Score: 0.950
+================================================================================
+
+Source: FDA
+
+Title:
+pembrolizumab - Drug Safety Information
+
+Summary:
+ADVERSE REACTIONS:
+6 ADVERSE REACTIONS The following clinically significant adverse reactions are described elsewhere in the labeling.
+
+Severe and fatal immune-mediated adverse reactions [see Warnings and Precautions (5.1) ] .
+
+Infusion-related reactions [see Warnings and Precautions (5.2) ].
+
+Most common adverse reactions (reported in ≥20% of patients) were: KEYTRUDA as a single agent: fatigue, musculoskeletal pain, rash, diarrhea, pyrexia, cough, decreased appetite, pruritus, dyspnea, constipation, pain, abdominal
+
+
+Metadata:
+  • drug_name: pembrolizumab
+  • purpose: N/A
+  • type: drug_label
+
+Relevance Metrics:
+  • Relevance: 1.000
+  • Recency: 0.500
+  • Completeness: 1.000
+  • Source Priority: 1.000
+

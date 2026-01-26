@@ -1,0 +1,2 @@
+[console_scripts]
+carewise = carewise.__main__:main
