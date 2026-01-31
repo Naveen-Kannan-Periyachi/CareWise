@@ -1,7 +1,20 @@
 # CareWise Bio - Requirements
 
 # Core dependencies
+# CareWise - Unified Health Research Assistant
+# 
+# This file is for the OLD project structure.
+# For the NEW unified project, use: carewise/requirements.txt
+#
+# To install dependencies for the unified project:
+#   cd carewise
+#   pip install -r requirements.txt
+
+# Core dependencies (legacy)
 requests>=2.31.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.4.0>=2.31.0
 
 # Backend API server
 fastapi>=0.104.0

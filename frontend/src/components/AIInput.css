@@ -1,0 +1,145 @@
+.ai-input-container {
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.ai-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ai-input-field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.ai-input-field {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 1.5rem;
+  padding: 1.25rem 3.5rem 1.25rem 1.75rem;
+  color: white;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  resize: none;
+  overflow-y: auto;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    background 0.3s;
+  font-family: inherit;
+  height: 80px;
+}
+
+.ai-input-field::placeholder {
+  color: rgba(203, 213, 225, 0.6);
+}
+
+.ai-input-field:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow:
+    0 0 0 3px rgba(129, 140, 248, 0.1),
+    0 0 20px rgba(129, 140, 248, 0.2);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.ai-input-field:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ai-input-submit {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(129, 140, 248, 0.1);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 0.875rem;
+  padding: 0.625rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.ai-input-submit:hover:not(:disabled) {
+  background: rgba(129, 140, 248, 0.2);
+  border-color: rgba(129, 140, 248, 0.3);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.ai-input-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ai-input-submit-loading {
+  background: transparent;
+  border: none;
+}
+
+.ai-input-icon {
+  color: white;
+  transition: opacity 0.3s;
+  opacity: 0.4;
+}
+
+.ai-input-icon-active {
+  opacity: 1;
+}
+
+.ai-input-spinner {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 4px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ai-input-status {
+  padding-left: 1rem;
+  height: 1rem;
+  font-size: 0.75rem;
+  margin: 0 auto;
+  color: rgba(203, 213, 225, 0.7);
+  text-align: center;
+}
+
+/* Scrollbar styling for the textarea */
+.ai-input-field::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ai-input-field::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 3px;
+}
+
+.ai-input-field::-webkit-scrollbar-thumb {
+  background: rgba(129, 140, 248, 0.3);
+  border-radius: 3px;
+}
+
+.ai-input-field::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 140, 248, 0.5);
+}

@@ -1,102 +1,65 @@
+/* Modern CSS Variables */
+:root {
+  --primary-color: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --secondary-color: #f59e0b;
+  --background: #0f172a;
+  --surface: #1e293b;
+  --surface-light: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
 .App {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background: var(--background);
 }
 
-.App-header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 2rem 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.logo {
+/* Loading Screen */
+.loading-screen {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  height: 100vh;
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: 1.25rem;
 }
 
-.dna-icon {
-  color: #667eea;
-  animation: rotate 4s linear infinite;
-}
-
-@keyframes rotate {
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
 
-.App-header h1 {
-  font-size: 2.5rem;
-  color: #333;
-  font-weight: 700;
-  margin: 0;
-}
-
-.tagline {
-  color: #666;
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.App-main {
-  flex: 1;
-  padding: 2rem 1rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.error-message {
-  background: #fee;
-  border: 1px solid #fcc;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  color: #c33;
-  text-align: center;
-}
-
-.error-message p {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.no-results {
-  background: white;
-  border-radius: 12px;
-  padding: 3rem;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
-}
-
-.no-results p {
-  color: #666;
-  font-size: 1.1rem;
-}
-
-.results-container {
-  margin-top: 2rem;
-  animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
+@keyframes slideIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -107,26 +70,62 @@
   }
 }
 
-.App-footer {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1.5rem;
-  text-align: center;
-  color: #666;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .App-header h1 {
-    font-size: 1.8rem;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
   }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
-  .tagline {
-    font-size: 0.9rem;
-  }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
-  .App-main {
-    padding: 1rem 0.5rem;
-  }
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Utility Classes */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+
+.bg-primary {
+  background: var(--primary-color);
 }

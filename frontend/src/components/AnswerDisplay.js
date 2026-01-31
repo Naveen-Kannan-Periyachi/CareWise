@@ -4,8 +4,8 @@ import './AnswerDisplay.css';
 
 function AnswerDisplay({ answer }) {
   const formatAnswerWithCitations = (text) => {
-    // Replace [PubMed], [ClinicalTrials], [FDA] with styled badges
-    const parts = text.split(/(\[PubMed\]|\[ClinicalTrials\]|\[FDA\])/g);
+    // Replace source citations with styled badges
+    const parts = text.split(/(\[PubMed\]|\[ClinicalTrials\]|\[FDA\]|\[MedlinePlus\]|\[CDC\]|\[WHO\])/g);
     
     return parts.map((part, index) => {
       if (part === '[PubMed]') {
@@ -14,6 +14,12 @@ function AnswerDisplay({ answer }) {
         return <span key={index} className="citation-badge trials-badge">ClinicalTrials</span>;
       } else if (part === '[FDA]') {
         return <span key={index} className="citation-badge fda-badge">FDA</span>;
+      } else if (part === '[MedlinePlus]') {
+        return <span key={index} className="citation-badge pubmed-badge">MedlinePlus</span>;
+      } else if (part === '[CDC]') {
+        return <span key={index} className="citation-badge trials-badge">CDC</span>;
+      } else if (part === '[WHO]') {
+        return <span key={index} className="citation-badge fda-badge">WHO</span>;
       }
       return <span key={index}>{part}</span>;
     });

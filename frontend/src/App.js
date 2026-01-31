@@ -1,91 +1,56 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import QueryInput from './components/QueryInput';
-import ExecutionPlan from './components/ExecutionPlan';
-import AnswerDisplay from './components/AnswerDisplay';
-import EvidenceList from './components/EvidenceList';
-import LoadingSpinner from './components/LoadingSpinner';
-import { Dna } from 'lucide-react';
+import LandingPage from './pages/LandingPage';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+
+// Protected Route Component
+function PrivateRoute({ children }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const user = localStorage.getItem('carewise_user');
+    setIsAuthenticated(!!user);
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div className="loading-screen">Loading...</div>;
+  }
+
+  return isAuthenticated ? children : <Navigate to="/login" />;
+}
 
 function App() {
-  const [query, setQuery] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [results, setResults] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleSearch = async (searchQuery) => {
-    setLoading(true);
-    setError(null);
-    setResults(null);
-    setQuery(searchQuery);
-
-    try {
-      const response = await axios.post('/api/query', {
-        query: searchQuery
-      });
-      
-      setResults(response.data);
-    } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred while processing your query. Please try again.');
-      console.error('Error:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const user = localStorage.getItem('carewise_user');
+    setIsAuthenticated(!!user);
+  }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="header-content">
-          <div className="logo">
-            <Dna size={40} className="dna-icon" />
-            <h1>CareWise Bio</h1>
-          </div>
-          <p className="tagline">AI-Powered Biomedical Research Assistant</p>
-        </div>
-      </header>
-
-      <main className="App-main">
-        <div className="container">
-          <QueryInput onSearch={handleSearch} loading={loading} />
-
-          {error && (
-            <div className="error-message">
-              <p>⚠️ {error}</p>
-            </div>
-          )}
-
-          {loading && <LoadingSpinner />}
-
-          {results && !loading && (
-            <div className="results-container">
-              {results.execution_plan && (
-                <ExecutionPlan plan={results.execution_plan} />
-              )}
-
-              {results.answer && (
-                <AnswerDisplay answer={results.answer} />
-              )}
-
-              {results.evidence && results.evidence.length > 0 && (
-                <EvidenceList evidence={results.evidence} />
-              )}
-
-              {results.evidence && results.evidence.length === 0 && (
-                <div className="no-results">
-                  <p>No evidence found for your query. Try rephrasing or using different keywords.</p>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </main>
-
-      <footer className="App-footer">
-        <p>Powered by Ollama LLM • PubMed • ClinicalTrials.gov • FDA</p>
-      </footer>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/signup" element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            } 
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -9,7 +9,10 @@ function ExecutionPlan({ plan }) {
       'CLINICAL_TRIALS': '#10b981',
       'DRUG_SAFETY': '#f59e0b',
       'COMPARATIVE_RESEARCH': '#8b5cf6',
-      'DATA_ANALYSIS': '#ec4899'
+      'DATA_ANALYSIS': '#ec4899',
+      'INFORMATIONAL': '#3b82f6',
+      'SYMPTOMS_RELATED': '#10b981',
+      'GENERAL_HEALTH': '#8b5cf6'
     };
     return colors[intent] || '#6b7280';
   };
@@ -18,7 +21,10 @@ function ExecutionPlan({ plan }) {
     const colors = {
       'PubMed': '#3b82f6',
       'ClinicalTrials': '#10b981',
-      'FDA': '#f59e0b'
+      'FDA': '#f59e0b',
+      'MedlinePlus': '#3b82f6',
+      'CDC': '#10b981',
+      'WHO': '#8b5cf6'
     };
     return colors[source] || '#6b7280';
   };

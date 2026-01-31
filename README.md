@@ -1,125 +1,169 @@
-# 🧬 CareWise Bio - Biomedical Research Assistant
+# 🏥 CareWise - Unified Health Research Assistant
 
-A complete AI-powered biomedical research assistant that converts natural language queries into structured execution plans and fetches real data from PubMed, ClinicalTrials.gov, and FDA databases.
+> **Note**: This project has been unified! The old `src/carewise-bio` and `src/carewise-suggest` projects have been merged into the new `carewise/` directory.
 
-## 🏗️ Architecture
+A comprehensive AI-powered health research assistant that combines **biomedical research** and **general health information** capabilities. Converts natural language queries into structured execution plans and fetches real data from 6 trusted sources.
+
+## 🚀 Quick Start
+
+```bash
+# Navigate to the unified project
+cd carewise
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the CLI
+python main.py
+
+# Or start the API server
+python backend_api.py
+```
+
+## 🌟 Dual-Mode Operation
+
+### Biomedical Research Mode (carewise-bio)
+
+- 📚 **PubMed** - Scientific literature and research papers
+- 🏥 **ClinicalTrials.gov** - Clinical trial data
+- 💊 **FDA** - Drug safety information
+
+### General Health Mode (carewise-suggest)
+
+- 📖 **MedlinePlus** - Consumer health information
+- 🏛️ **CDC** - Public health data
+- 🌍 **WHO** - Global health statistics
+
+## 🏗️ Unified Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    USER QUERY                                │
-│         "Any ongoing CAR-T trials for melanoma?"            │
+User Query → Intelligence Layer → Unified Router → 6 Data Sources
+                                                   ↓
+                                              Normalizer
+                                                   ↓
+                                                 Ranker
+                                                   ↓
+                                          Answer Generator
+                                                   ↓
+                                          Grounded Answer
+```
+
+## 📁 New Project Structure
+
+**Main Project**: `carewise/` (use this)
+
+- All 6 data sources integrated
+- Unified intelligence layer
+- Single entry point for all queries
+
+**Old Projects** (deprecated):
+
+- `src/carewise-bio/` - Old biomedical project
+- `src/carewise-suggest/` - Old general health project
+
+Run `.\cleanup.ps1` to remove old projects after closing all terminals.
+
+## 📊 Example Queries
+
+**Biomedical Research:**
+
+```
+- Any ongoing CAR-T trials for melanoma?
+- What are the side effects of Pembrolizumab?
+- Latest research on CRISPR gene therapy
+```
+
+**General Health:**
+
+```
+- What causes headaches and how to treat them?
+- Information about diabetes prevention
+- Global statistics on tuberculosis
+```
+
+## 📖 Full Documentation
+
+See `carewise/README.md` for complete documentation of the unified system.
+
+---
+
+## Legacy Architecture (Old)
+
+│ ┌────────────────────────────────────────────────────┐ │
+│ │ Normalizer │ │
+│ │ - Converts different API formats │ │
+│ │ - Creates unified Evidence objects │ │
+│ │ - Cleans and standardizes data │ │
+│ └────────────────────────────────────────────────────┘ │
 └──────────────────────┬──────────────────────────────────────┘
-                       ↓
+↓
+Unified Evidence List
+↓
 ┌─────────────────────────────────────────────────────────────┐
-│              LAYER 1: Query Intelligence                     │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │  LLM Planner (Ollama + llama3.1:8b)                 │   │
-│  │  - Classifies intent                                 │   │
-│  │  - Extracts entities (diseases, drugs, therapies)    │   │
-│  │  - Selects data sources                              │   │
-│  │  - Self-healing validation                           │   │
-│  └─────────────────────────────────────────────────────┘   │
-└──────────────────────┬──────────────────────────────────────┘
-                       ↓
-              Execution Plan
-              {
-                "intent": "CLINICAL_TRIALS",
-                "entities": {
-                  "diseases": ["melanoma"],
-                  "therapies": ["CAR-T"]
-                },
-                "sources": ["ClinicalTrials"]
-              }
-                       ↓
-┌─────────────────────────────────────────────────────────────┐
-│              LAYER 2: Data Acquisition                       │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   PubMed     │  │ ClinicalTrials│  │     FDA      │     │
-│  │   Client     │  │    Client     │  │   Client     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-│           ↓                 ↓                 ↓             │
-│  ┌────────────────────────────────────────────────────┐   │
-│  │            Data Router                              │   │
-│  │  Routes to appropriate APIs based on plan          │   │
-│  └────────────────────────────────────────────────────┘   │
-└──────────────────────┬──────────────────────────────────────┘
-                       ↓
-                  Raw API Data
-                       ↓
-┌─────────────────────────────────────────────────────────────┐
-│           LAYER 3: Evidence Normalization                    │
-│  ┌────────────────────────────────────────────────────┐   │
-│  │  Normalizer                                         │   │
-│  │  - Converts different API formats                   │   │
-│  │  - Creates unified Evidence objects                 │   │
-│  │  - Cleans and standardizes data                     │   │
-│  └────────────────────────────────────────────────────┘   │
-└──────────────────────┬──────────────────────────────────────┘
-                       ↓
-                Unified Evidence List
-                       ↓
-┌─────────────────────────────────────────────────────────────┐
-│                   RESULTS                                    │
-│  [                                                           │
-│    {                                                         │
-│      "type": "clinical_trial",                               │
-│      "title": "CAR-T Cell Therapy for Melanoma",            │
-│      "nct_id": "NCT12345678",                                │
-│      "status": "RECRUITING",                                 │
-│      "url": "https://clinicaltrials.gov/study/NCT12345678"   │
-│    },                                                        │
-│    ...                                                       │
-│  ]                                                           │
+│ RESULTS │
+│ [ │
+│ { │
+│ "type": "clinical_trial", │
+│ "title": "CAR-T Cell Therapy for Melanoma", │
+│ "nct_id": "NCT12345678", │
+│ "status": "RECRUITING", │
+│ "url": "https://clinicaltrials.gov/study/NCT12345678" │
+│ }, │
+│ ... │
+│ ] │
 └─────────────────────────────────────────────────────────────┘
+
 ```
 
 ## 📁 Project Structure
 
 ```
+
 carewise-bio/
 │
 ├── backend/
-│   ├── main.py                          # 🎮 Main entry point
-│   │
-│   ├── query_intelligence/              # 🧠 Layer 1: Query Intelligence
-│   │   ├── __init__.py
-│   │   ├── planner.py                   # Main orchestrator with self-healing
-│   │   ├── prompt.py                    # LLM prompt engineering
-│   │   ├── schema.py                    # Allowed intents & sources
-│   │   ├── validator.py                 # Plan validation logic
-│   │   └── llm_planner.py               # Ollama LLM interface
-│   │
-│   ├── biomedical_data/                 # 📚 Layer 2: Data Acquisition
-│   │   ├── __init__.py
-│   │   ├── pubmed_client.py             # PubMed API client
-│   │   ├── clinical_trials_client.py    # ClinicalTrials.gov client
-│   │   ├── fda_client.py                # openFDA client
-│   │   ├── data_router.py               # Routes plans to data sources
-│   │   └── normalizer.py                # Converts raw data to Evidence
-│   │
-│   ├── config/                          # ⚙️ Configuration
-│   │   ├── __init__.py
-│   │   └── settings.py                  # API keys, URLs, constants
-│   │
-│   ├── models/                          # 📋 Data Models
-│   │   ├── __init__.py
-│   │   └── evidence.py                  # Unified Evidence object
-│   │
-│   └── utils/                           # 🛠️ Utilities
-│       └── helpers.py                   # Helper functions
+│ ├── main.py # 🎮 Main entry point
+│ │
+│ ├── query_intelligence/ # 🧠 Layer 1: Query Intelligence
+│ │ ├── **init**.py
+│ │ ├── planner.py # Main orchestrator with self-healing
+│ │ ├── prompt.py # LLM prompt engineering
+│ │ ├── schema.py # Allowed intents & sources
+│ │ ├── validator.py # Plan validation logic
+│ │ └── llm_planner.py # Ollama LLM interface
+│ │
+│ ├── biomedical_data/ # 📚 Layer 2: Data Acquisition
+│ │ ├── **init**.py
+│ │ ├── pubmed_client.py # PubMed API client
+│ │ ├── clinical_trials_client.py # ClinicalTrials.gov client
+│ │ ├── fda_client.py # openFDA client
+│ │ ├── data_router.py # Routes plans to data sources
+│ │ └── normalizer.py # Converts raw data to Evidence
+│ │
+│ ├── config/ # ⚙️ Configuration
+│ │ ├── **init**.py
+│ │ └── settings.py # API keys, URLs, constants
+│ │
+│ ├── models/ # 📋 Data Models
+│ │ ├── **init**.py
+│ │ └── evidence.py # Unified Evidence object
+│ │
+│ └── utils/ # 🛠️ Utilities
+│ └── helpers.py # Helper functions
 │
-├── query_intelligence/                  # (Root level - legacy)
-│   └── ...                              # Original implementation
+├── query_intelligence/ # (Root level - legacy)
+│ └── ... # Original implementation
 │
-├── tests/                               # 🧪 Tests
-│   ├── test_query_intelligence.py
-│   ├── test_pubmed.py
-│   ├── test_clinical_trials.py
-│   └── test_fda.py
+├── tests/ # 🧪 Tests
+│ ├── test_query_intelligence.py
+│ ├── test_pubmed.py
+│ ├── test_clinical_trials.py
+│ └── test_fda.py
 │
 ├── requirements.txt
 └── README.md
-```
+
+````
 
 ## 🚀 Quick Start
 
@@ -134,7 +178,7 @@ carewise-bio/
 # Download from https://ollama.com/download
 # Then pull the model
 ollama pull llama3.1:8b
-```
+````
 
 ### 3. Install Python Dependencies
 
